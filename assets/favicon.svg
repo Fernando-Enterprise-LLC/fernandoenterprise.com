@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Fernando Enterprise">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1C3D2E"/>
+      <stop offset="1" stop-color="#2F5E4C"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="url(#g)"/>
+  <polyline points="1,11.3 5.6,7.6 9.6,10.4 14.4,5.6 19.2,10.1 23.8,7.5 31,11.6"
+            fill="none" stroke="#F4F7F3" stroke-width="1.5"
+            stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#F4F7F3">
+    <ellipse cx="15.2" cy="21.4" rx="7" ry="3.2"/>
+    <path d="M21.4 21.4 L26.2 17.6 L26.2 25.2 Z"/>
+  </g>
+  <circle cx="11.2" cy="20.7" r="0.85" fill="#1C3D2E"/>
+</svg>

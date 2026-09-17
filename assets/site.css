@@ -1,0 +1,401 @@
+/* Fernando Enterprise — one stylesheet, no external fonts, no third-party assets. */
+
+/* ---- Tokens ------------------------------------------------------------- */
+
+:root {
+  color-scheme: light dark;
+
+  /* Neutrals biased toward the brand green — no pure grey anywhere. */
+  --bg:            #f6f8f4;
+  --surface:       #ffffff;
+  --ink:           #16211b;
+  --ink-soft:      #47574e;
+  --ink-faint:     #6b7b71;
+  --rule:          #d9e2da;
+  --rule-soft:     #e7ede6;
+
+  --accent:        #277e4a;
+  --accent-ink:    #1e6a3d;   /* link hover / pressed */
+  --accent-wash:   #eef4ee;   /* the one tinted surface */
+
+  --icon-top:      #1c3d2e;
+  --icon-bottom:   #2f5e4c;
+
+  /* Type scale — 1.25, with a fluid top step. */
+  --step--1: 0.875rem;
+  --step-0:  1.0625rem;
+  --step-1:  1.3125rem;
+  --step-2:  1.625rem;
+  --step-3:  clamp(2rem, 1.35rem + 2.6vw, 2.75rem);
+
+  --measure: 65ch;
+  --gutter:  16px;
+  --container: 46rem;
+
+  --font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #0f1613;
+    --surface:     #15201a;
+    --ink:         #e7ede8;
+    --ink-soft:    #b3c2b8;
+    --ink-faint:   #8c9d92;
+    --rule:        #26332c;
+    --rule-soft:   #1e2a24;
+
+    --accent:      #53ab7a;
+    --accent-ink:  #74c194;
+    --accent-wash: #16241d;
+  }
+}
+
+/* ---- Reset-ish ---------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ---- Type --------------------------------------------------------------- */
+
+h1, h2, h3 {
+  text-wrap: balance;
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  margin: 0 0 0.5rem;
+  font-weight: 620;
+}
+
+h1 { font-size: var(--step-3); letter-spacing: -0.021em; }
+h2 { font-size: var(--step-2); margin-top: 2.75rem; }
+h3 { font-size: var(--step-1); margin-top: 1.75rem; }
+
+p, ul, ol, dl { margin: 0 0 1rem; max-width: var(--measure); }
+
+ul, ol { padding-left: 1.15rem; }
+li { margin-bottom: 0.35rem; }
+li::marker { color: var(--ink-faint); }
+
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  max-width: 34ch;
+  text-wrap: balance;
+}
+
+.note {
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  max-width: var(--measure);
+}
+
+strong { font-weight: 640; }
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover { color: var(--accent-ink); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- Skip link ---------------------------------------------------------- */
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip:focus {
+  left: var(--gutter);
+  top: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--accent);
+  text-decoration: none;
+}
+
+/* ---- Shell -------------------------------------------------------------- */
+
+.wrap {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1rem;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--step-0);
+  font-weight: 640;
+  letter-spacing: -0.014em;
+  color: var(--ink);
+  text-decoration: none;
+  margin-right: auto;
+}
+.wordmark:hover { color: var(--ink); }
+.wordmark:hover .ridge { stroke: var(--accent-ink); }
+
+/* The one decorative element on the site: the app icon's ridge line. */
+.ridge {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  flex: none;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--step--1);
+}
+.site-nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding-block: 0.15rem;
+  border-bottom: 1px solid transparent;
+}
+.site-nav a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--rule);
+}
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+main { display: block; }
+
+.page {
+  padding-block: 3rem 3.5rem;
+}
+
+.page > :first-child { margin-top: 0; }
+
+/* The single accent rule, under the page title. */
+.title-rule {
+  border: 0;
+  border-top: 2px solid var(--accent);
+  width: 2.5rem;
+  margin: 1.5rem 0 2rem;
+}
+
+/* ---- Sections ----------------------------------------------------------- */
+
+.section { margin-top: 3rem; }
+.section > h2 { margin-top: 0; }
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 3rem 0 0;
+}
+
+/* ---- Product cards ------------------------------------------------------ */
+
+.products {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  max-width: none;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.product {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  padding: 1.25rem var(--gutter) 1.35rem;
+  margin: 0;
+}
+.product--pending {
+  border-left-color: var(--rule);
+  background: none;
+}
+
+.product h3 { margin-top: 0; }
+.product > :last-child { margin-bottom: 0; }
+
+.product-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+.product-head img {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  flex: none;
+}
+
+.status {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 640;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+}
+.status--pending { color: var(--ink-faint); }
+
+.subtitle {
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+  margin: 0.15rem 0 0.9rem;
+}
+
+.product-body { min-width: 0; }
+.product-body > :first-child { margin-top: 0; }
+.product-body > :last-child { margin-bottom: 0; }
+
+/* ---- Product page bits -------------------------------------------------- */
+
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.hero img {
+  width: 96px;
+  height: 96px;
+  border-radius: 20px;
+  flex: none;
+}
+.hero-text { min-width: min(100%, 18rem); flex: 1 1 22rem; }
+.hero-text > :first-child { margin-top: 0; }
+
+.callout {
+  background: var(--accent-wash);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  padding: 1rem var(--gutter);
+  margin: 2rem 0;
+  max-width: var(--measure);
+}
+.callout > :first-child { margin-top: 0; }
+.callout > :last-child { margin-bottom: 0; }
+
+.tiers {
+  margin: 1.5rem 0 0;
+  max-width: var(--measure);
+}
+.tiers dt {
+  font-weight: 640;
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+}
+.tiers dt:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.tiers dd { margin: 0.4rem 0 0; }
+
+.price {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  margin-top: 0.35rem;
+}
+
+.linklist {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  max-width: var(--measure);
+}
+.linklist li {
+  border-top: 1px solid var(--rule);
+  padding-block: 0.7rem;
+  margin: 0;
+}
+.linklist li:last-child { border-bottom: 1px solid var(--rule); }
+.linklist a { font-weight: 560; }
+.linklist span {
+  display: block;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+/* ---- Footer ------------------------------------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  background: var(--surface);
+  padding-block: 2.25rem 3rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  margin-top: 4rem;
+}
+
+.site-footer p { margin: 0 0 0.6rem; max-width: var(--measure); }
+
+.site-footer .legal {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+  padding: 0;
+  margin: 1.25rem 0 0;
+}
+.footer-links a { color: var(--ink-soft); }
+.footer-links a:hover { color: var(--accent); }
+
+.footer-group { margin-top: 1.75rem; }
+.footer-group h2 {
+  font-size: var(--step--1);
+  font-weight: 640;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+
+address { font-style: normal; }
