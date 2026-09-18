@@ -75,7 +75,7 @@ The site is a project site in the **Fernando-Enterprise-LLC** organisation.
 ## DNS at Squarespace Domains
 
 The domain is registered at Squarespace and currently points at Squarespace's parking
-page. Google Workspace mail for `tonio@fernandoenterprise.com` runs on the same domain
+page. Google Workspace mail for `support@fernandoenterprise.com` runs on the same domain
 and **must not be disturbed**.
 
 ### Do not touch
